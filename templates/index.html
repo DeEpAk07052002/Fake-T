@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Fake ID Detection System</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+	    <!-- <marquee width="80%" direction="left" height="100px" class="marquee">
+		<!-- This is a sample scrolling text that has scrolls in the upper direction. -->
+		<!-- MINOR PROJECT-2 -->
+		</marquee> -->
+ <div class="login">
+	 <img src="../static/logo.png" class="logo"/>
+	<h1>Fake Profile Identifier</h1>
+
+    <form action="{{ url_for('predict')}}" method="POST">
+		<div class="all-box">
+		<div class="input-box">
+			<input type="number" class="message" id="message" name="message" placeholder="statuses_count">
+		</div>
+		<div class="input-box">
+			<input type="number" class="message1" id="message1" name="message1" placeholder="followers_count">
+    	</div>
+		<div class="input-box">
+			<input type="number" class="message2" id="message2" name="message2" placeholder="friends_count">
+		</div>
+		<div class="input-box">
+			<input type="number" class="message3" id="message3" name="message3" placeholder="favorites_count">
+		</div>
+		<div class="input-box">
+			<input type="number" class="message4" id="message4" name="message4" placeholder="lang_num">
+		</div>
+		<div class="input-box">
+			<input type="number" class="message5" id="message5" name="message5" placeholder="listed_count">
+		</div>
+		</div>
+		
+        <button type="submit" class="btn btn-primary btn-block btn-large">PREDICT</button>
+
+        <div class="results">
+
+			{% if prediction[0] == 0 %}
+				<h2 style="color:rgba(0, 128, 0, 0.927);">Predicted GENUINE </h2>
+				<h2 style="color:red;">Test loss = {{prediction[1]}}</h2>
+				<h2 style="color:green;">Test accuracy = {{prediction[2]}}</h2>
+				
+			{% elif prediction[0] == 1 %}
+				<h2 style="color:red;"><b>Predicted FAKE</b></h2>
+				<h2 style="color:red;">Test loss = {{prediction[1]}}</h2>
+				<h2 style="color:green;">Test accuracy = {{prediction[2]}}</h2>
+			{% elif prediction[0] == -1 %}
+				<h2>Enter Required all values</h2>
+			{% endif %}
+
+		</div>
+
+    </form>
+</div>
+<!-- <div class="name">
+	<h3>19103202 Ayush Wardhan</h3><h3>19103046 Deepak Kumar Gupta</h3><h3>19103045 Himanshu Chauhan</h3>
+</div> -->
+
+
+
